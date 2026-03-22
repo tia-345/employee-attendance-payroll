@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FiSend, FiMessageSquare, FiUsers } from "react-icons/fi";
+import { FiSend, FiUsers } from "react-icons/fi";
 
 function AdminMessages() {
     const [employees, setEmployees] = useState([]);
@@ -11,10 +11,11 @@ function AdminMessages() {
 
     // Fetch Employees
     useEffect(() => {
-        fetch("http://localhost:5000/api/employees")
+        fetch(`${process.env.REACT_APP_API_URL}/api/employees`)
             .then(res => res.json())
             .then(data => setEmployees(data.filter(e => e.role !== "admin")))
             .catch(err => console.error(err));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Poll LocalStorage for real-time updates
@@ -22,13 +23,14 @@ function AdminMessages() {
         const fetchMsgs = () => {
             const msgs = JSON.parse(localStorage.getItem("chat_messages")) || [];
             setChatHistory(msgs);
-            
+
             // Auto-mark as read when on this page
             localStorage.setItem("last_read_admin", Date.now().toString());
         };
         fetchMsgs();
         const interval = setInterval(fetchMsgs, 2000);
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Helper to check if an employee has unread messages
