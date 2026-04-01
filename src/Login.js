@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FiMail, FiLock, FiLogIn, FiUser, FiBriefcase } from "react-icons/fi";
+import API_URL from "./apiConfig";
+
 
 function Login({ onLogin }) {
   const [role, setRole] = useState("employee");
@@ -14,7 +16,7 @@ function Login({ onLogin }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

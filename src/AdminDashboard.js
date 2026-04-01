@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import API_URL from "./apiConfig";
+
 
 function AdminDashboard() {
   const [employees, setEmployees] = useState([]);
@@ -9,7 +11,7 @@ function AdminDashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:5000/api/employees/me", {
+      fetch(`${API_URL}/api/employees/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -17,7 +19,7 @@ function AdminDashboard() {
         .catch(console.error);
     }
 
-    fetch("http://localhost:5000/api/employees")
+    fetch(`${API_URL}/api/employees`)
       .then(res => res.json())
       .then(data => setEmployees(data))
       .catch(console.error);

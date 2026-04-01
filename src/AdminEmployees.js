@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiUserPlus, FiUsers, FiMail, FiPhone, FiBriefcase, FiMapPin, FiShield } from "react-icons/fi";
+import API_URL from "./apiConfig";
+
 
 function AdminEmployees() {
   const [employees, setEmployees] = useState([]);
@@ -32,7 +34,7 @@ function AdminEmployees() {
 
   // Fetch employees
   const fetchEmployees = () => {
-    fetch("http://localhost:5000/api/employees")
+    fetch(`${API_URL}/api/employees`)
       .then(res => res.json())
       .then(data => setEmployees(data))
       .catch(err => console.error(err));
@@ -82,8 +84,8 @@ function AdminEmployees() {
     setSubmitStatus(null);
 
     const url = editingId 
-        ? `http://localhost:5000/api/employees/${editingId}`
-        : "http://localhost:5000/api/employees";
+        ? `${API_URL}/api/employees/${editingId}`
+        : `${API_URL}/api/employees`;
     
     const method = editingId ? "PUT" : "POST";
     

@@ -189,7 +189,8 @@ router.post("/me/profile-picture", upload.single("profilePicture"), async (req, 
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const filePath = `http://localhost:5000/uploads/${req.file.filename}`;
+    const baseUrl = process.env.BASE_URL || "https://employee-attendance-payroll-a9xi.onrender.com";
+    const filePath = `${baseUrl}/uploads/${req.file.filename}`;
     const updatedUser = await Employee.findByIdAndUpdate(
       decoded.id,
       { profilePicture: filePath },

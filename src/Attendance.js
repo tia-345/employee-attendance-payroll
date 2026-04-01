@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import API_URL from "./apiConfig";
+
 
 function Attendance() {
   const [records, setRecords] = useState([]);
@@ -12,7 +14,7 @@ function Attendance() {
 
   const fetchRecords = () => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:5000/api/attendance/my", {
+    fetch(`${API_URL}/api/attendance/my`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -41,7 +43,7 @@ function Attendance() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:5000/api/attendance/punch", {
+      const res = await fetch(`${API_URL}/api/attendance/punch`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

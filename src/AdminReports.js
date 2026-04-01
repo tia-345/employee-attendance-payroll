@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import API_URL from "./apiConfig";
+
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -22,7 +24,7 @@ function AdminReports() {
       let rows = [];
 
       if (reportType === "Employee Directory") {
-        const res = await fetch("http://localhost:5000/api/employees");
+        const res = await fetch(`${API_URL}/api/employees`);
         data = await res.json();
         headers = ["Name", "Email", "Role", "Department", "Designation", "Salary"];
         rows = data.map(emp => [
@@ -35,7 +37,7 @@ function AdminReports() {
         ]);
       }
       else if (reportType === "Payroll Summary") {
-        const res = await fetch("http://localhost:5000/api/payroll");
+        const res = await fetch(`${API_URL}/api/payroll`);
         data = await res.json();
         // Sort chronologically if needed, but endpoint usually does it
         headers = ["Month/Year", "Employee Email", "Base Salary", "Attendance", "OT Hrs", "Bonus", "Deductions", "Deduction Reason", "Net Deposit"];
@@ -52,7 +54,7 @@ function AdminReports() {
         ]);
       }
       else if (reportType === "Attendance Logs") {
-        const res = await fetch("http://localhost:5000/api/attendance");
+        const res = await fetch(`${API_URL}/api/attendance`);
         data = await res.json();
         headers = ["Date", "Employee Email", "Status", "Check In", "Check Out", "Hrs Worked"];
         rows = data.map(a => [

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import API_URL from "./apiConfig";
 import {
+
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   AreaChart, Area, ComposedChart, Line
 } from "recharts";
@@ -17,7 +19,7 @@ function Payroll() {
   const isAdmin = currentUser.role === "admin";
 
   const fetchPayrolls = () => {
-    fetch("http://localhost:5000/api/payroll")
+    fetch(`${API_URL}/api/payroll`)
       .then((res) => res.json())
       .then((data) => {
         // Role-based verification
@@ -74,7 +76,7 @@ function Payroll() {
   // Handle Update Submit
   const handleUpdate = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/payroll/${id}`, {
+      const res = await fetch(`${API_URL}/api/payroll/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editForm),

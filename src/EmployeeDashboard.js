@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiClock, FiCalendar, FiBriefcase, FiCheckCircle, FiCoffee, FiTrendingUp, FiActivity, FiMapPin, FiMail } from "react-icons/fi";
+import API_URL from "./apiConfig";
+
 
 function EmployeeDashboard({ user, onNavigate }) {
   const [time, setTime] = useState(new Date());
@@ -20,7 +22,7 @@ function EmployeeDashboard({ user, onNavigate }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:5000/api/attendance/my", {
+      fetch(`${API_URL}/api/attendance/my`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -34,7 +36,7 @@ function EmployeeDashboard({ user, onNavigate }) {
         })
         .catch(console.error);
 
-      fetch("http://localhost:5000/api/employees/me", {
+      fetch(`${API_URL}/api/employees/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())

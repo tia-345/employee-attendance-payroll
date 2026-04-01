@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import API_URL from "./apiConfig";
+
 
 function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -9,7 +11,7 @@ function Profile() {
   useEffect(() => {
     if (!token) return;
 
-    fetch("http://localhost:5000/api/employees/me", {
+    fetch(`${API_URL}/api/employees/me`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -30,7 +32,7 @@ function Profile() {
   // ================= SAVE PROFILE =================
   const handleSave = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/employees/me", {
+      const res = await fetch(`${API_URL}/api/employees/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +65,7 @@ function Profile() {
     formData.append("profilePicture", file);
 
     try {
-      const res = await fetch("http://localhost:5000/api/employees/me/profile-picture", {
+      const res = await fetch(`${API_URL}/api/employees/me/profile-picture`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
