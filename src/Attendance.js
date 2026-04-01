@@ -24,6 +24,7 @@ function Attendance() {
 
   useEffect(() => {
     fetchRecords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const calculateAutoStatus = (cIn, cOut) => {

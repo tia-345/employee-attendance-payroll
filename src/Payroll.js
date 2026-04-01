@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API_URL from "./apiConfig";
 import {
-
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   AreaChart, Area, ComposedChart, Line
 } from "recharts";
 
@@ -41,6 +40,7 @@ function Payroll() {
 
   useEffect(() => {
     fetchPayrolls();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin, currentUser.email]);
 
   // Handle Edit Click

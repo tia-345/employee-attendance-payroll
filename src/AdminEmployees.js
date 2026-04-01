@@ -51,6 +51,7 @@ function AdminEmployees() {
     checkMsgs();
     const interval = setInterval(checkMsgs, 2000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const hasUnread = (email) => {

@@ -45,6 +45,7 @@ function EmployeeDashboard({ user, onNavigate }) {
         })
         .catch(console.error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const greeting = time.getHours() < 12 ? "Good Morning" : time.getHours() < 18 ? "Good Afternoon" : "Good Evening";

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiSend, FiUsers } from "react-icons/fi";
+import API_URL from "./apiConfig";
+
 
 function AdminMessages() {
     const [employees, setEmployees] = useState([]);
@@ -9,9 +11,8 @@ function AdminMessages() {
     const [chatHistory, setChatHistory] = useState([]);
     const [activeChat, setActiveChat] = useState("GLOBAL"); // GLOBAL for broadcast log, or specific email
 
-    // Fetch Employees
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/employees`)
+        fetch(`${API_URL}/api/employees`)
             .then(res => res.json())
             .then(data => setEmployees(data.filter(e => e.role !== "admin")))
             .catch(err => console.error(err));

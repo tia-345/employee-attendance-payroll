@@ -1,0 +1,6 @@
+﻿
+D:\final\employee-attendance-payroll\src\Payroll.js
+  5:3  warning  'BarChart' is defined but never used  no-unused-vars
+
+Γ£û 1 problem (0 errors, 1 warning)
+
